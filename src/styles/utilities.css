@@ -1,0 +1,167 @@
+/* =============================================================================
+ * Burj Al Wasl — Custom Utility Classes
+ * =============================================================================
+ * Utilities that don't exist in Tailwind or need custom composition.
+ * ============================================================================= */
+
+/* ── Container ── */
+.container-page {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-container-mobile);
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: var(--spacing-container);
+  }
+}
+
+/* ── Section Spacing ── */
+.section-spacing {
+  padding-block: var(--spacing-section-mobile);
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-block: var(--spacing-section);
+  }
+}
+
+/* ── Frosted Glass ── */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-dark {
+  background: rgba(15, 42, 74, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Gradient Overlays ── */
+.overlay-bottom {
+  background: linear-gradient(
+    to top,
+    rgba(15, 42, 74, 0.6) 0%,
+    transparent 100%
+  );
+}
+
+.overlay-top {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 42, 74, 0.4) 0%,
+    transparent 100%
+  );
+}
+
+.overlay-full {
+  background: rgba(15, 42, 74, 0.3);
+}
+
+/* ── Brand Gradient ── */
+.gradient-brand {
+  background: linear-gradient(135deg, var(--color-navy), var(--color-azure));
+}
+
+.gradient-brand-horizontal {
+  background: linear-gradient(
+    90deg,
+    var(--color-navy) 0%,
+    var(--color-azure) 50%,
+    var(--color-navy) 100%
+  );
+}
+
+/* ── Decorative Line ── */
+.line-accent {
+  width: 3rem;
+  height: 1px;
+  background-color: var(--color-azure);
+}
+
+/* ── Aspect Ratios ── */
+.aspect-hero {
+  aspect-ratio: 16 / 10;
+}
+
+.aspect-card {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* ── Scrollbar Styling ── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-300) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-slate-300);
+  border-radius: var(--radius-full);
+}
+
+/* ── Focus Styles ── */
+.focus-ring {
+  outline: 2px solid var(--color-azure);
+  outline-offset: 2px;
+}
+
+/* ── Skip Navigation (accessibility) ── */
+.skip-nav {
+  position: absolute;
+  left: -9999px;
+  z-index: var(--z-cursor);
+  padding: 1rem;
+  background: var(--color-navy);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: var(--weight-semibold);
+}
+
+.skip-nav:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ── No Cursor (when custom cursor is active) ── */
+@media (pointer: fine) {
+  .cursor-none {
+    cursor: none;
+  }
+}
+
+/* ── Image Cover ── */
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
