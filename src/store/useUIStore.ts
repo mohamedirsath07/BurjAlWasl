@@ -1,17 +1,9 @@
-// =============================================================================
-// Burj Al Wasl — UI Store (Zustand)
-// =============================================================================
-// Cross-component UI state management.
-// See: architecture/state-management.md for full spec.
-//
-// TODO: Install zustand in Phase 0 scaffold
-// =============================================================================
+'use client';
 
-// import { create } from 'zustand';
+import { create } from 'zustand';
+import type { CursorVariant } from '@/types';
 
-export type CursorVariant = 'default' | 'hover' | 'drag' | 'hidden';
-
-export interface UIState {
+interface UIState {
   // Navigation
   isMobileMenuOpen: boolean;
   isScrolled: boolean;
@@ -34,19 +26,30 @@ export interface UIState {
   setCursorVariant: (variant: CursorVariant) => void;
 }
 
-// TODO: Uncomment when zustand is installed
-// export const useUIStore = create<UIState>((set) => ({
-//   isMobileMenuOpen: false,
-//   isScrolled: false,
-//   toggleMobileMenu: () => set((s) => ({ isMobileMenuOpen: !s.isMobileMenuOpen })),
-//   closeMobileMenu: () => set({ isMobileMenuOpen: false }),
-//   setScrolled: (scrolled) => set({ isScrolled: scrolled }),
-//   activeModal: null,
-//   openModal: (id) => set({ activeModal: id, isScrollLocked: true }),
-//   closeModal: () => set({ activeModal: null, isScrollLocked: false }),
-//   isScrollLocked: false,
-//   lockScroll: () => set({ isScrollLocked: true }),
-//   unlockScroll: () => set({ isScrollLocked: false }),
-//   cursorVariant: 'default',
-//   setCursorVariant: (variant) => set({ cursorVariant: variant }),
-// }));
+export const useUIStore = create<UIState>((set) => ({
+  // Navigation
+  isMobileMenuOpen: false,
+  isScrolled: false,
+  toggleMobileMenu: () =>
+    set((state) => ({
+      isMobileMenuOpen: !state.isMobileMenuOpen,
+      isScrollLocked: !state.isMobileMenuOpen,
+    })),
+  closeMobileMenu: () =>
+    set({ isMobileMenuOpen: false, isScrollLocked: false }),
+  setScrolled: (scrolled) => set({ isScrolled: scrolled }),
+
+  // Modals
+  activeModal: null,
+  openModal: (id) => set({ activeModal: id, isScrollLocked: true }),
+  closeModal: () => set({ activeModal: null, isScrollLocked: false }),
+
+  // Scroll Lock
+  isScrollLocked: false,
+  lockScroll: () => set({ isScrollLocked: true }),
+  unlockScroll: () => set({ isScrollLocked: false }),
+
+  // Cursor
+  cursorVariant: 'default',
+  setCursorVariant: (variant) => set({ cursorVariant: variant }),
+}));
