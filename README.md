@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studio X - Premium Digital Agency Platform
+
+This is the foundational codebase for Studio X, a high-end digital product studio targeting international enterprise clients.
+
+## Architecture
+
+*   **Framework:** Next.js 16 (App Router)
+*   **Styling:** Tailwind CSS v4
+*   **Motion & Animation:** Framer Motion (Page Transitions, Scroll Parallax)
+*   **Typography:** `@tailwindcss/typography` (Prose) + Inter & Space Grotesk
+*   **Accessibility:** Full `useReducedMotion` support for vestibular disorder compliance.
+*   **SEO:** Dynamic `sitemap.ts` and `robots.ts` generation.
 
 ## Getting Started
 
-First, run the development server:
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+2.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+3.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Data Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The platform is currently operating on a Headless architecture using local mock data. 
+*   **Portfolio:** `src/data/portfolio.ts`
+*   **Insights:** `src/data/insights.ts`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+When you are ready to scale, swap these imports for a Headless CMS SDK (like Sanity.io or Contentful). The dynamic routes (`[slug]/page.tsx`) are already engineered to generate static parameters (`generateStaticParams`) for maximum performance.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment (Vercel)
 
-## Learn More
+This Next.js application is heavily optimized for Edge deployment on Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+1.  Push this repository to GitHub, GitLab, or Bitbucket.
+2.  Import the repository into [Vercel](https://vercel.com).
+3.  Set the Framework Preset to **Next.js**.
+4.  Deploy.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Vercel will automatically detect the static routes and deploy them to the Edge Network, resulting in global TTFB (Time to First Byte) latency of under 50ms.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Engineered for Excellence.*
