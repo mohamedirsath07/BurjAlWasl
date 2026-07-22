@@ -23,7 +23,7 @@ export function HeroCTA({ onPrimaryClick, onSecondaryClick }: HeroCTAProps) {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ delay: 2.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-wrap gap-4 items-center justify-start z-10 relative"
     >
       <MagneticButton variant="primary" onClick={onPrimaryClick}>
@@ -34,7 +34,7 @@ export function HeroCTA({ onPrimaryClick, onSecondaryClick }: HeroCTAProps) {
       <a
         href="#expertise"
         onClick={onSecondaryClick}
-        className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-white border border-white/20 hover:border-[#1e81b0] hover:text-[#1e81b0] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1e81b0] focus-visible:outline-offset-4"
+        className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-white border border-white/20 hover:border-[#c5a55a] hover:text-[#c5a55a] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c5a55a] focus-visible:outline-offset-4"
       >
         View Projects
         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -82,8 +82,8 @@ function MagneticButton({ children, variant = 'primary', onClick, className }: M
       onMouseLeave={handleMouseLeave}
       className={cn(
         'group relative px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase transition-colors duration-500 overflow-hidden',
-        variant === 'primary' ? 'bg-[#1e81b0] text-white hover:bg-[#166a93]' : 'bg-[#0f2a4a] text-white hover:bg-[#1e81b0]',
-        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1e81b0] focus-visible:outline-offset-4',
+        variant === 'primary' ? 'bg-[#c5a55a] text-white hover:bg-[#b8943f]' : 'bg-[#0f2a4a] text-white hover:bg-[#c5a55a]',
+        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c5a55a] focus-visible:outline-offset-4',
         className
       )}
       style={{

@@ -5,6 +5,7 @@
 @import "../../src/styles/typography.css";
 @import "../../src/styles/animations.css";
 @import "../../src/styles/utilities.css";
+@import "../../src/styles/landing.css";
 
 /* ── Tailwind v4 Theme ── */
 @theme {
@@ -52,31 +53,36 @@
 }
 
 /* ── Base Styles ── */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Wrapped in @layer base so Tailwind utility classes (margin, padding,
+   centering, etc.) correctly override these resets. Unlayered rules would
+   otherwise win over Tailwind's layered utilities and break all spacing. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 
-body {
-  font-family: var(--font-sans);
-  color: var(--color-navy);
-  background-color: #ffffff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-navy);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 }
 
 ::selection {
-  background-color: var(--color-azure);
+  background-color: var(--color-gold);
   color: #ffffff;
 }
 
@@ -97,7 +103,7 @@ body {
 
 /* Focus visible ring */
 :focus-visible {
-  outline: 2px solid var(--color-azure);
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
 

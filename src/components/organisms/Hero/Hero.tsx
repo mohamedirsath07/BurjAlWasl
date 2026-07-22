@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen w-full flex items-center justify-start overflow-hidden bg-[#091d33] py-20"
+      className="relative min-h-screen w-full flex items-center justify-start overflow-hidden bg-[#091d33] pt-32 pb-12"
       aria-label="Welcome Showcase"
     >
       {/* ── Cinematic Background video & overlays ── */}

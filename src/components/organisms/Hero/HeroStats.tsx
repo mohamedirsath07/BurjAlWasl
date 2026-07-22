@@ -44,7 +44,7 @@ function AnimatedCounter({ value, suffix, label, delay }: StatItemProps) {
     <div className="flex flex-col select-none" aria-label={`${value}${suffix} ${label}`}>
       <span className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl lg:text-5xl font-light text-white tracking-tight">
         {count}
-        <span className="text-[#1e81b0] font-medium">{suffix}</span>
+        <span className="text-[#c5a55a] font-medium">{suffix}</span>
       </span>
       <span className="text-[10px] uppercase tracking-widest text-slate-400 mt-2 font-semibold">
         {label}
@@ -67,8 +67,8 @@ export function HeroStats() {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="grid grid-cols-3 gap-6 md:gap-12 border-t border-white/10 pt-10 mt-16 max-w-2xl relative z-10"
+      transition={{ delay: 2.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="grid grid-cols-3 gap-6 md:gap-12 border-t border-white/10 pt-6 mt-10 max-w-2xl relative z-10"
     >
       {stats.map((stat, i) => (
         <AnimatedCounter

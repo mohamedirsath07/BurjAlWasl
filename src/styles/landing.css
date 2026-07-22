@@ -1,0 +1,192 @@
+/* =============================================================================
+ * Burj Al Wasl — Premium Landing Page Theme Layer
+ * =============================================================================
+ * Self-contained, scoped theme for the SaaS-style landing page.
+ * Uses CSS custom properties so the dark/light toggle only affects the
+ * landing surface and never leaks into the rest of the multi-page site.
+ * ============================================================================= */
+
+.landing {
+  /* Dark theme (default) */
+  --ln-bg: #05070e;
+  --ln-bg-2: #0a1020;
+  --ln-surface: rgba(255, 255, 255, 0.045);
+  --ln-surface-strong: rgba(255, 255, 255, 0.07);
+  --ln-surface-solid: #0c1322;
+  --ln-border: rgba(255, 255, 255, 0.1);
+  --ln-border-strong: rgba(255, 255, 255, 0.16);
+  --ln-heading: #ffffff;
+  --ln-text: #d7deec;
+  --ln-text-muted: #93a0b8;
+  --ln-accent: #3a9cc5;
+  --ln-accent-strong: #1e81b0;
+  --ln-gold: #d4b87a;
+  --ln-glow-1: rgba(30, 129, 176, 0.5);
+  --ln-glow-2: rgba(197, 165, 90, 0.32);
+  --ln-glow-3: rgba(58, 156, 197, 0.35);
+  --ln-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+
+  color-scheme: dark;
+  background-color: var(--ln-bg);
+  color: var(--ln-text);
+  /* Establish a stacking context so the fixed -z-10 animated background paints
+     above this wrapper's own background but below all content. Uses isolation
+     (not transform) so position:fixed children still track the viewport. */
+  isolation: isolate;
+}
+
+.landing[data-theme='light'] {
+  --ln-bg: #f6f8fc;
+  --ln-bg-2: #eaeff7;
+  --ln-surface: rgba(15, 42, 74, 0.035);
+  --ln-surface-strong: rgba(15, 42, 74, 0.06);
+  --ln-surface-solid: #ffffff;
+  --ln-border: rgba(15, 42, 74, 0.1);
+  --ln-border-strong: rgba(15, 42, 74, 0.16);
+  --ln-heading: #0f2a4a;
+  --ln-text: #33425c;
+  --ln-text-muted: #64748b;
+  --ln-accent: #1e81b0;
+  --ln-accent-strong: #166a93;
+  --ln-gold: #b8923f;
+  --ln-glow-1: rgba(30, 129, 176, 0.28);
+  --ln-glow-2: rgba(197, 165, 90, 0.22);
+  --ln-glow-3: rgba(58, 156, 197, 0.22);
+  --ln-shadow: 0 24px 60px rgba(15, 42, 74, 0.12);
+
+  color-scheme: light;
+}
+
+/* ── Glassmorphism panels ── */
+.ln-glass {
+  background: var(--ln-surface);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--ln-border);
+}
+
+.ln-glass-strong {
+  background: var(--ln-surface-strong);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--ln-border-strong);
+}
+
+/* Interactive hover for glass surfaces. Defined here (unlayered) so it wins
+   over the base .ln-glass border, which Tailwind's layered hover:border
+   utilities cannot override. */
+.ln-interactive {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.5s ease,
+    background-color 0.4s ease;
+}
+
+.ln-interactive:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--ln-accent) 45%, transparent);
+  box-shadow: var(--ln-shadow);
+}
+
+/* Accent border for active/featured glass surfaces (wins over base border). */
+.ln-glass.is-active,
+.ln-glass-strong.is-active {
+  border-color: color-mix(in srgb, var(--ln-accent) 50%, transparent);
+}
+
+/* ── Gradient text ── */
+.ln-gradient-text {
+  background: linear-gradient(
+    100deg,
+    var(--ln-heading) 0%,
+    var(--ln-accent) 55%,
+    var(--ln-gold) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Hairline divider ── */
+.ln-hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ln-border-strong),
+    transparent
+  );
+}
+
+/* ── Animated gradient background canvas ── */
+.ln-aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ln-aurora__blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.9;
+  will-change: transform;
+}
+
+.ln-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--ln-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ln-border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  opacity: 0.35;
+}
+
+/* ── Marquee (trust bar) ── */
+@keyframes ln-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ln-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ln-marquee 32s linear infinite;
+}
+
+/* ── Slow spin for decorative rings ── */
+@keyframes ln-spin-slow {
+  to { transform: rotate(360deg); }
+}
+.ln-spin-slow {
+  animation: ln-spin-slow 28s linear infinite;
+}
+
+/* ── Cinematic slow zoom for hero video ── */
+@keyframes ln-slow-zoom {
+  0% { transform: scale(1.04); }
+  50% { transform: scale(1.14); }
+  100% { transform: scale(1.04); }
+}
+.ln-slow-zoom {
+  animation: ln-slow-zoom 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ln-slow-zoom {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ln-marquee-track,
+  .ln-spin-slow {
+    animation: none !important;
+  }
+}
